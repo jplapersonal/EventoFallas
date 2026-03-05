@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rollup Preview — Evento Fallas 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', -apple-system, sans-serif;
+            background: #1A2E33;
+            color: #e0e0e0;
+            min-height: 100vh;
+        }
+
+        .header {
+            text-align: center;
+            padding: 48px 24px 16px;
+        }
+
+        .header .logo-ref {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(217, 250, 166, 0.08);
+            border: 1px solid rgba(217, 250, 166, 0.15);
+            border-radius: 100px;
+            padding: 6px 20px;
+            margin-bottom: 20px;
+            font-size: 12px;
+            color: #D9FAA6;
+            font-weight: 400;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .header p {
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.4);
+            font-weight: 300;
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            padding: 24px 24px 40px;
+        }
+
+        .tab {
+            padding: 10px 28px;
+            border-radius: 100px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.03);
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 14px;
+            font-weight: 400;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .tab:hover {
+            background: rgba(217, 250, 166, 0.06);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .tab.active {
+            background: rgba(217, 250, 166, 0.12);
+            border-color: rgba(217, 250, 166, 0.25);
+            color: #D9FAA6;
+        }
+
+        .view-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 24px 60px;
+        }
+
+        .side-by-side {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: start;
+        }
+
+        .rollup-card {
+            text-align: center;
+        }
+
+        .rollup-card .label {
+            font-size: 13px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #D9FAA6;
+            margin-bottom: 8px;
+        }
+
+        .rollup-card .sublabel {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.3);
+            margin-bottom: 20px;
+            font-weight: 300;
+        }
+
+        .rollup-frame {
+            position: relative;
+            display: inline-block;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.04);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            cursor: pointer;
+        }
+
+        .rollup-frame:hover {
+            transform: scale(1.02);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(217, 250, 166, 0.15);
+        }
+
+        .rollup-frame img {
+            display: block;
+            width: 100%;
+            max-width: 420px;
+            height: auto;
+        }
+
+        .single-view {
+            display: none;
+            text-align: center;
+        }
+
+        .single-view .rollup-frame img {
+            max-width: 500px;
+        }
+
+        .single-view .label {
+            font-size: 15px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #D9FAA6;
+            margin-bottom: 8px;
+        }
+
+        .single-view .sublabel {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.3);
+            margin-bottom: 24px;
+            font-weight: 300;
+        }
+
+        /* Fullscreen */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(10, 20, 22, 0.95);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            cursor: zoom-out;
+            backdrop-filter: blur(20px);
+        }
+
+        .overlay.visible {
+            display: flex;
+        }
+
+        .overlay img {
+            max-height: 92vh;
+            max-width: 90vw;
+            border-radius: 12px;
+            box-shadow: 0 0 100px rgba(217, 250, 166, 0.08);
+        }
+
+        .overlay .close-hint {
+            position: absolute;
+            top: 24px;
+            right: 32px;
+            color: rgba(255, 255, 255, 0.25);
+            font-size: 13px;
+            font-weight: 400;
+        }
+
+        /* Brand ref */
+        .brand-ref {
+            max-width: 700px;
+            margin: 60px auto 0;
+            padding: 28px 32px;
+            border: 1px solid rgba(217, 250, 166, 0.08);
+            border-radius: 20px;
+            background: rgba(217, 250, 166, 0.03);
+        }
+
+        .brand-ref h3 {
+            font-size: 13px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: rgba(255, 255, 255, 0.3);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .brand-colors {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-bottom: 20px;
+        }
+
+        .color-swatch {
+            text-align: center;
+        }
+
+        .color-swatch .swatch {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            margin: 0 auto 8px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .color-swatch .name {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.3);
+            font-weight: 300;
+        }
+
+        .color-swatch .hex {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.5);
+            font-weight: 400;
+            font-family: monospace;
+        }
+
+        .logo-hierarchy {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .tier {
+            text-align: center;
+        }
+
+        .tier-1 {
+            font-size: 22px;
+            font-weight: 600;
+            color: #D9FAA6;
+        }
+
+        .tier-sep {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.2);
+            font-weight: 300;
+        }
+
+        .tier-2 {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.5);
+            font-weight: 400;
+        }
+
+        .tier-3 {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.25);
+            font-weight: 300;
+            background: rgba(217, 250, 166, 0.06);
+            padding: 4px 16px;
+            border-radius: 100px;
+        }
+
+        @media (max-width: 900px) {
+            .side-by-side {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        <div class="logo-ref">✦ Brand-aligned designs</div>
+        <h1>Rollup — Evento Fallas 2026</h1>
+        <p>ZeroNet · Cisco · Telefónica · Wayra — The Terminal Hub, Valencia</p>
+    </div>
+
+    <div class="tabs">
+        <button class="tab active" onclick="showView('compare')">Comparar</button>
+        <button class="tab" onclick="showView('light')">Light Version</button>
+        <button class="tab" onclick="showView('dark')">Dark Version</button>
+    </div>
+
+    <div class="view-container">
+        <!-- Side by side -->
+        <div id="view-compare" class="side-by-side">
+            <div class="rollup-card">
+                <div class="label">Light</div>
+                <div class="sublabel">Fondo mint/blanco · Fiel a la web de ZeroNet</div>
+                <div class="rollup-frame" onclick="openFullscreen(this.querySelector('img').src)">
+                    <img src="/Users/jose/.gemini/antigravity/brain/11999621-c91c-4772-a413-840bac22ea2a/rollup_zn_light_1772641558048.png"
+                        alt="Rollup Light">
+                </div>
+            </div>
+            <div class="rollup-card">
+                <div class="label">Dark</div>
+                <div class="sublabel">Fondo dark petrol · Versión evento premium</div>
+                <div class="rollup-frame" onclick="openFullscreen(this.querySelector('img').src)">
+                    <img src="/Users/jose/.gemini/antigravity/brain/11999621-c91c-4772-a413-840bac22ea2a/rollup_zn_dark_1772641573270.png"
+                        alt="Rollup Dark">
+                </div>
+            </div>
+        </div>
+
+        <!-- Single light -->
+        <div id="view-light" class="single-view">
+            <div class="label">Light Version</div>
+            <div class="sublabel">Fondo mint/blanco · Estética fiel a zeronetit.com</div>
+            <div class="rollup-frame" onclick="openFullscreen(this.querySelector('img').src)">
+                <img src="/Users/jose/.gemini/antigravity/brain/11999621-c91c-4772-a413-840bac22ea2a/rollup_zn_light_1772641558048.png"
+                    alt="Rollup Light">
+            </div>
+        </div>
+
+        <!-- Single dark -->
+        <div id="view-dark" class="single-view">
+            <div class="label">Dark Version</div>
+            <div class="sublabel">Fondo dark petrol · Versión premium para evento</div>
+            <div class="rollup-frame" onclick="openFullscreen(this.querySelector('img').src)">
+                <img src="/Users/jose/.gemini/antigravity/brain/11999621-c91c-4772-a413-840bac22ea2a/rollup_zn_dark_1772641573270.png"
+                    alt="Rollup Dark">
+            </div>
+        </div>
+
+        <!-- Brand reference -->
+        <div class="brand-ref">
+            <h3>Paleta de marca ZeroNet aplicada</h3>
+            <div class="brand-colors">
+                <div class="color-swatch">
+                    <div class="swatch" style="background: #D9FAA6;"></div>
+                    <div class="name">Lime Green</div>
+                    <div class="hex">#D9FAA6</div>
+                </div>
+                <div class="color-swatch">
+                    <div class="swatch" style="background: #1A2E33;"></div>
+                    <div class="name">Dark Petrol</div>
+                    <div class="hex">#1A2E33</div>
+                </div>
+                <div class="color-swatch">
+                    <div class="swatch" style="background: #EAF5EE;"></div>
+                    <div class="name">Mint</div>
+                    <div class="hex">#EAF5EE</div>
+                </div>
+                <div class="color-swatch">
+                    <div class="swatch" style="background: #FFFFFF; border-color: rgba(0,0,0,0.1);"></div>
+                    <div class="name">White</div>
+                    <div class="hex">#FFFFFF</div>
+                </div>
+            </div>
+            <div class="logo-hierarchy">
+                <div class="tier tier-1">zeronet</div>
+                <div class="tier-sep">en alianza con</div>
+                <div class="tier tier-2">TELEFÓNICA &nbsp;·&nbsp; CISCO</div>
+                <div class="tier-sep">↓</div>
+                <div class="tier tier-3">Respaldado por INCIBE Emprende by Wayra</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fullscreen -->
+    <div class="overlay" id="overlay" onclick="closeFullscreen()">
+        <span class="close-hint">Click para cerrar · ESC</span>
+        <img id="overlay-img" src="" alt="">
+    </div>
+
+    <script>
+        function showView(view) {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.getElementById('view-compare').style.display = 'none';
+            document.getElementById('view-light').style.display = 'none';
+            document.getElementById('view-dark').style.display = 'none';
+
+            if (view === 'compare') {
+                document.getElementById('view-compare').style.display = 'grid';
+                document.querySelectorAll('.tab')[0].classList.add('active');
+            } else if (view === 'light') {
+                document.getElementById('view-light').style.display = 'block';
+                document.querySelectorAll('.tab')[1].classList.add('active');
+            } else if (view === 'dark') {
+                document.getElementById('view-dark').style.display = 'block';
+                document.querySelectorAll('.tab')[2].classList.add('active');
+            }
+        }
+
+        function openFullscreen(src) {
+            document.getElementById('overlay-img').src = src;
+            document.getElementById('overlay').classList.add('visible');
+        }
+
+        function closeFullscreen() {
+            document.getElementById('overlay').classList.remove('visible');
+        }
+
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') closeFullscreen();
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Brief Diseñador — Rollup Evento Fallas 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        @page {
+            size: A4;
+            margin: 20mm;
+        }
+
+        @media print {
+            body {
+                background: white !important;
+            }
+
+            .no-print {
+                display: none !important;
+            }
+
+            .page-break {
+                page-break-before: always;
+            }
+
+            .card {
+                box-shadow: none !important;
+                border: 1px solid #e0e0e0 !important;
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', -apple-system, sans-serif;
+            background: #f4f6f5;
+            color: #1A2E33;
+            line-height: 1.6;
+        }
+
+        .no-print {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: #1A2E33;
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 100;
+        }
+
+        .no-print span {
+            color: #D9FAA6;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .no-print button {
+            background: #D9FAA6;
+            color: #1A2E33;
+            border: none;
+            padding: 8px 24px;
+            border-radius: 100px;
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .no-print button:hover {
+            background: #c8f08a;
+        }
+
+        .content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 80px 24px 60px;
+        }
+
+        /* Header */
+        .doc-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 32px;
+            border-bottom: 2px solid #1A2E33;
+        }
+
+        .doc-header .tag {
+            display: inline-block;
+            background: #D9FAA6;
+            color: #1A2E33;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 4px 16px;
+            border-radius: 100px;
+            margin-bottom: 16px;
+        }
+
+        .doc-header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 4px;
+        }
+
+        .doc-header .subtitle {
+            font-size: 16px;
+            color: #5a7068;
+            font-weight: 300;
+        }
+
+        .doc-header .date {
+            font-size: 13px;
+            color: #8a9a94;
+            margin-top: 8px;
+        }
+
+        /* Sections */
+        h2 {
+            font-size: 18px;
+            font-weight: 600;
+            margin: 36px 0 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #dde5e2;
+            color: #1A2E33;
+        }
+
+        h2 .num {
+            display: inline-block;
+            background: #1A2E33;
+            color: #D9FAA6;
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            text-align: center;
+            line-height: 28px;
+            font-size: 14px;
+            margin-right: 8px;
+        }
+
+        h3 {
+            font-size: 15px;
+            font-weight: 600;
+            margin: 20px 0 8px;
+            color: #2a4a40;
+        }
+
+        p,
+        li {
+            font-size: 14px;
+            color: #3a5a50;
+            font-weight: 300;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 8px 0;
+        }
+
+        li {
+            margin: 4px 0;
+        }
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            margin: 16px 0;
+            box-shadow: 0 2px 12px rgba(26, 46, 51, 0.06);
+        }
+
+        /* Specs table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0;
+            font-size: 14px;
+        }
+
+        th {
+            text-align: left;
+            background: #EAF5EE;
+            padding: 10px 16px;
+            font-weight: 500;
+            color: #1A2E33;
+            border-bottom: 2px solid #d0e0d8;
+        }
+
+        td {
+            padding: 10px 16px;
+            border-bottom: 1px solid #eef2f0;
+            color: #3a5a50;
+            font-weight: 300;
+        }
+
+        td:first-child {
+            font-weight: 500;
+            color: #1A2E33;
+            width: 200px;
+        }
+
+        /* Colors */
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin: 16px 0;
+        }
+
+        .color-item {
+            text-align: center;
+        }
+
+        .color-item .swatch {
+            width: 100%;
+            height: 60px;
+            border-radius: 12px;
+            margin-bottom: 8px;
+            border: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        .color-item .name {
+            font-size: 13px;
+            font-weight: 500;
+            color: #1A2E33;
+        }
+
+        .color-item .hex {
+            font-size: 12px;
+            font-family: monospace;
+            color: #6a8a7e;
+        }
+
+        .color-item .use {
+            font-size: 11px;
+            color: #8a9a94;
+            font-weight: 300;
+        }
+
+        /* Mockup image */
+        .mockup-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .mockup-container img {
+            max-width: 320px;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(26, 46, 51, 0.12);
+        }
+
+        .mockup-container .caption {
+            font-size: 12px;
+            color: #8a9a94;
+            margin-top: 8px;
+            font-style: italic;
+        }
+
+        /* Copy block */
+        .copy-block {
+            background: #f8faf9;
+            border-left: 3px solid #D9FAA6;
+            padding: 16px 20px;
+            margin: 12px 0;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .copy-block .label {
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #8a9a94;
+            margin-bottom: 4px;
+        }
+
+        .copy-block .text {
+            font-size: 15px;
+            font-weight: 400;
+            color: #1A2E33;
+        }
+
+        .copy-block .text.small {
+            font-size: 13px;
+            color: #3a5a50;
+        }
+
+        /* Hierarchy */
+        .hierarchy {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            padding: 20px;
+            background: #f8faf9;
+            border-radius: 12px;
+            margin: 12px 0;
+        }
+
+        .hierarchy .h-tier {
+            text-align: center;
+            padding: 8px 0;
+        }
+
+        .hierarchy .h-1 {
+            font-size: 24px;
+            font-weight: 600;
+            color: #1A2E33;
+        }
+
+        .hierarchy .h-sep {
+            font-size: 11px;
+            color: #8a9a94;
+        }
+
+        .hierarchy .h-2 {
+            font-size: 15px;
+            color: #5a7068;
+        }
+
+        .hierarchy .h-3 {
+            font-size: 12px;
+            color: #6a8a7e;
+            background: #EAF5EE;
+            padding: 4px 16px;
+            border-radius: 100px;
+        }
+
+        /* Dimensions diagram */
+        .dimensions {
+            text-align: center;
+            padding: 20px;
+            background: #f8faf9;
+            border-radius: 12px;
+            margin: 12px 0;
+        }
+
+        .dimensions .dim-box {
+            display: inline-block;
+            width: 120px;
+            height: 280px;
+            border: 2px dashed #b0c8be;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .dimensions .dim-w {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 13px;
+            font-weight: 500;
+            color: #1A2E33;
+        }
+
+        .dimensions .dim-h {
+            position: absolute;
+            right: -50px;
+            top: 50%;
+            transform: translateY(-50%) rotate(90deg);
+            font-size: 13px;
+            font-weight: 500;
+            color: #1A2E33;
+        }
+
+        .dimensions .dim-label {
+            margin-top: 16px;
+            font-size: 12px;
+            color: #8a9a94;
+        }
+
+        /* Layout zones */
+        .zones {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            width: 200px;
+            margin: 12px auto;
+        }
+
+        .zone {
+            padding: 8px 12px;
+            border-radius: 6px;
+            text-align: center;
+            font-size: 11px;
+            font-weight: 500;
+        }
+
+        .zone-1 {
+            background: #1A2E33;
+            color: #D9FAA6;
+            flex: 1;
+            padding: 12px;
+        }
+
+        .zone-2 {
+            background: #2a4a40;
+            color: #fff;
+            flex: 1;
+            padding: 8px;
+        }
+
+        .zone-3 {
+            background: #3a6a58;
+            color: #fff;
+            flex: 2;
+            padding: 16px;
+        }
+
+        .zone-4 {
+            background: #5a8a78;
+            color: #fff;
+            flex: 1;
+            padding: 8px;
+        }
+
+        .zone-5 {
+            background: #8ab0a0;
+            color: #1A2E33;
+            flex: 1;
+            padding: 12px;
+        }
+
+        .note {
+            background: #FFF9E0;
+            border: 1px solid #F0E0A0;
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin: 16px 0;
+            font-size: 13px;
+            color: #6a5a20;
+        }
+
+        .note strong {
+            color: #4a3a10;
+        }
+
+        .ref-img {
+            max-width: 100%;
+            border-radius: 12px;
+            margin: 12px 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="no-print">
+        <span>📄 Brief para diseñador — Listo para imprimir</span>
+        <button onclick="window.print()">⬇ Guardar como PDF</button>
+    </div>
+
+    <div class="content">
+
+        <!-- HEADER -->
+        <div class="doc-header">
+            <div class="tag">Brief de diseño</div>
+            <h1>Rollup — Evento Fallas 2026</h1>
+            <div class="subtitle">ZeroNet · Cisco · Telefónica · Wayra</div>
+            <div class="date">Preparado: 4 de marzo de 2026 · Evento: 15–19 marzo 2026</div>
+        </div>
+
+        <!-- 1. CONTEXTO -->
+        <h2><span class="num">1</span> Contexto del evento</h2>
+        <div class="card">
+            <table>
+                <tr>
+                    <td>Evento</td>
+                    <td>El activo energético: cómo convertir el consumo en seguridad y resiliencia operativa</td>
+                </tr>
+                <tr>
+                    <td>Organizan</td>
+                    <td>ZeroNet, Cisco y Telefónica</td>
+                </tr>
+                <tr>
+                    <td>Audiencia</td>
+                    <td>Comerciales de Telefónica + clientes finales (directores IT, responsables de sostenibilidad,
+                        consultores)</td>
+                </tr>
+                <tr>
+                    <td>Ubicación</td>
+                    <td>The Terminal Hub, Marina de Valencia + Plaza del Ayuntamiento (Mascletà)</td>
+                </tr>
+                <tr>
+                    <td>Fecha</td>
+                    <td>Fallas 2026 (15–19 de marzo)</td>
+                </tr>
+                <tr>
+                    <td>Uso del rollup</td>
+                    <td>Recepción y networking en The Terminal Hub (Acto I)</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- 2. MOCKUP -->
+        <h2><span class="num">2</span> Mockup de referencia</h2>
+        <div class="card">
+            <div class="mockup-container">
+                <img src="mockup_referencia.png" alt="Mockup rollup aprobado">
+                <div class="caption">Mockup conceptual aprobado — adaptar con logos vectoriales reales</div>
+            </div>
+        </div>
+
+        <!-- 3. ESPECIFICACIONES TÉCNICAS -->
+        <h2><span class="num">3</span> Especificaciones técnicas</h2>
+        <div class="card">
+            <table>
+                <tr>
+                    <td>Pieza</td>
+                    <td>Rollup / Pull-up banner</td>
+                </tr>
+                <tr>
+                    <td>Dimensiones</td>
+                    <td><strong>85 × 200 cm</strong></td>
+                </tr>
+                <tr>
+                    <td>Orientación</td>
+                    <td>Vertical (portrait)</td>
+                </tr>
+                <tr>
+                    <td>Resolución</td>
+                    <td>150-300 DPI</td>
+                </tr>
+                <tr>
+                    <td>Modo de color</td>
+                    <td>CMYK</td>
+                </tr>
+                <tr>
+                    <td>Sangrado</td>
+                    <td>3mm por cada lado</td>
+                </tr>
+                <tr>
+                    <td>Formato entrega</td>
+                    <td>PDF de alta resolución (+ AI/PSD editable)</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- PAGE BREAK -->
+        <div class="page-break"></div>
+
+        <!-- 4. PALETA DE COLORES -->
+        <h2><span class="num">4</span> Paleta de colores</h2>
+        <p>Seguir estrictamente la identidad visual de <strong>zeronetit.com</strong></p>
+        <div class="card">
+            <div class="color-grid">
+                <div class="color-item">
+                    <div class="swatch" style="background: #D9FAA6;"></div>
+                    <div class="name">Lime Green</div>
+                    <div class="hex">#D9FAA6</div>
+                    <div class="use">Acento principal, CTAs, badges</div>
+                </div>
+                <div class="color-item">
+                    <div class="swatch" style="background: #1A2E33;"></div>
+                    <div class="name">Dark Petrol</div>
+                    <div class="hex">#1A2E33</div>
+                    <div class="use">Textos, headline, elementos oscuros</div>
+                </div>
+                <div class="color-item">
+                    <div class="swatch" style="background: #EAF5EE;"></div>
+                    <div class="name">Mint</div>
+                    <div class="hex">#EAF5EE</div>
+                    <div class="use">Fondo principal del rollup</div>
+                </div>
+                <div class="color-item">
+                    <div class="swatch" style="background: #FFFFFF; border-color: #ddd;"></div>
+                    <div class="name">White</div>
+                    <div class="hex">#FFFFFF</div>
+                    <div class="use">Gradiente de fondo, zona inferior</div>
+                </div>
+            </div>
+
+            <h3>Colores secundarios (para las líneas de convergencia)</h3>
+            <div class="color-grid">
+                <div class="color-item">
+                    <div class="swatch" style="background: #3B82F6;"></div>
+                    <div class="name">Azul Telefónica</div>
+                    <div class="hex">#3B82F6</div>
+                    <div class="use">Línea "Red · Telefónica"</div>
+                </div>
+                <div class="color-item">
+                    <div class="swatch" style="background: #2A5A4A;"></div>
+                    <div class="name">Teal Cisco</div>
+                    <div class="hex">#2A5A4A</div>
+                    <div class="use">Línea "Seguridad · Cisco"</div>
+                </div>
+                <div class="color-item">
+                    <div class="swatch" style="background: #9ACD32;"></div>
+                    <div class="name">Green ZeroNet</div>
+                    <div class="hex">#9ACD32</div>
+                    <div class="use">Línea "Energía · ZeroNet"</div>
+                </div>
+                <div class="color-item">
+                    <div class="swatch" style="background: transparent;"></div>
+                    <div class="name"></div>
+                    <div class="hex"></div>
+                    <div class="use"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. TIPOGRAFÍA -->
+        <h2><span class="num">5</span> Tipografía</h2>
+        <div class="card">
+            <table>
+                <tr>
+                    <td>Familia principal</td>
+                    <td><strong>Outfit</strong> (Google Fonts) — o la que use ZeroNet oficialmente</td>
+                </tr>
+                <tr>
+                    <td>Peso headline</td>
+                    <td>Light (300) o Regular (400) — minimalista, airy</td>
+                </tr>
+                <tr>
+                    <td>Peso subtexto</td>
+                    <td>Light (300)</td>
+                </tr>
+                <tr>
+                    <td>Estilo general</td>
+                    <td>Limpio, mucho aire, kerning generoso</td>
+                </tr>
+            </table>
+
+            <div class="note">
+                <strong>⚠️ Importante:</strong> La marca ZeroNet usa tipografía con pesos ligeros (light/regular), nunca
+                bold pesado. Mantener el look airy y premium de la web.
+            </div>
+        </div>
+
+        <!-- 6. CONTENIDO / COPY -->
+        <h2><span class="num">6</span> Contenido (copy exacto)</h2>
+        <div class="card">
+            <h3>Zona 1 — Logo</h3>
+            <div class="copy-block">
+                <div class="label">Logo</div>
+                <div class="text">zeronet (con icono infinity-loop)</div>
+                <div class="text small">Usar logo oficial vectorial. Color: Dark Petrol (#1A2E33)</div>
+            </div>
+
+            <h3>Zona 2 — Headline</h3>
+            <div class="copy-block">
+                <div class="label">Titular principal</div>
+                <div class="text">Donde la red, la seguridad y la energía convergen</div>
+            </div>
+
+            <h3>Zona 3 — Visual central</h3>
+            <div class="copy-block">
+                <div class="label">Gráfico de convergencia</div>
+                <div class="text small">Tres líneas/cintas suaves que convergen hacia un punto central:</div>
+                <div class="text small">• Azul → representa Conectividad (Telefónica)</div>
+                <div class="text small">• Teal/dark → representa Seguridad (Cisco)</div>
+                <div class="text small">• Verde lime → representa Energía (ZeroNet)</div>
+                <div class="text small" style="margin-top: 8px;">En el punto de convergencia: efecto suave lime green
+                </div>
+            </div>
+            <div class="copy-block">
+                <div class="label">Texto bajo convergencia</div>
+                <div class="text">Resiliencia Operativa</div>
+            </div>
+
+            <h3>Zona 4 — Value props</h3>
+            <div class="copy-block">
+                <div class="label">Tres beneficios (con checkmarks lime green)</div>
+                <div class="text small">✓ Continuidad de negocio</div>
+                <div class="text small">✓ Protección digital</div>
+                <div class="text small">✓ Eficiencia energética</div>
+            </div>
+
+            <h3>Zona 5 — Logos partners + footer</h3>
+            <div class="copy-block">
+                <div class="label">Partners</div>
+                <div class="text small">Texto: "En alianza con"</div>
+                <div class="text small">Logos: TELEFÓNICA + CISCO (usar logos oficiales vectoriales)</div>
+            </div>
+            <div class="copy-block">
+                <div class="label">Badge endorsement</div>
+                <div class="text small">Badge redondeado lime green: "Respaldado por INCIBE Emprende by Wayra"</div>
+            </div>
+            <div class="copy-block">
+                <div class="label">Footer</div>
+                <div class="text small">Valencia · Fallas 2026 · The Terminal Hub</div>
+                <div class="text small">+ QR Code (URL a definir por cliente)</div>
+            </div>
+        </div>
+
+        <!-- PAGE BREAK -->
+        <div class="page-break"></div>
+
+        <!-- 7. LAYOUT / DISTRIBUCIÓN -->
+        <h2><span class="num">7</span> Distribución de zonas</h2>
+        <div class="card">
+            <div style="display: flex; gap: 32px; align-items: center;">
+                <div>
+                    <div class="zones">
+                        <div class="zone zone-1">ZONA 1<br>Logo zeronet<br><small>~10% superior</small></div>
+                        <div class="zone zone-2">ZONA 2<br>Headline<br><small>~20%</small></div>
+                        <div class="zone zone-3">ZONA 3<br>Visual convergencia<br><small>~35% central</small></div>
+                        <div class="zone zone-4">ZONA 4<br>Value props<br><small>~15%</small></div>
+                        <div class="zone zone-5">ZONA 5<br>Logos + Footer<br><small>~20% inferior</small></div>
+                    </div>
+                </div>
+                <div style="flex: 1;">
+                    <h3>Proporciones orientativas</h3>
+                    <ul>
+                        <li><strong>Zona 1 (10%):</strong> Logo ZeroNet centrado, con aire arriba</li>
+                        <li><strong>Zona 2 (20%):</strong> Headline en dark petrol, centrado, tipografía light</li>
+                        <li><strong>Zona 3 (35%):</strong> Gráfico central de convergencia — es el elemento hero</li>
+                        <li><strong>Zona 4 (15%):</strong> Tres bullet points con checks lime green</li>
+                        <li><strong>Zona 5 (20%):</strong> Logos partners (más pequeños que ZeroNet), badge Wayra,
+                            evento y QR</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 8. JERARQUÍA DE LOGOS -->
+        <h2><span class="num">8</span> Jerarquía de logos</h2>
+        <div class="card">
+            <div class="hierarchy">
+                <div class="h-tier h-1">zeronet</div>
+                <div class="h-tier h-sep">Protagonista — Logo grande, zona superior</div>
+                <div class="h-tier h-sep" style="margin-top: 8px;">▼ en alianza con</div>
+                <div class="h-tier h-2">TELEFÓNICA &nbsp;&nbsp;·&nbsp;&nbsp; CISCO</div>
+                <div class="h-tier h-sep">Partners — ~40% del tamaño de ZeroNet, zona inferior</div>
+                <div class="h-tier h-sep" style="margin-top: 8px;">▼</div>
+                <div class="h-tier h-3">Respaldado por INCIBE Emprende by Wayra</div>
+                <div class="h-tier h-sep">Badge/sello — Más pequeño, como endorsement</div>
+            </div>
+
+            <div class="note">
+                <strong>⚠️ Crítico:</strong> ZeroNet debe ser claramente el logo protagonista. Telefónica y Cisco
+                aparecen como partners de soporte, NO al mismo nivel. Wayra/INCIBE aparece como sello de confianza, no
+                como co-organizador.
+            </div>
+        </div>
+
+        <!-- 9. ESTILO VISUAL -->
+        <h2><span class="num">9</span> Estilo visual y dirección artística</h2>
+        <div class="card">
+            <h3>Referencia: zeronetit.com</h3>
+            <img src="ref_zeronet_web.png" alt="Referencia web ZeroNet" class="ref-img">
+
+            <h3>Directrices clave</h3>
+            <ul>
+                <li><strong>Esquinas redondeadas</strong> en todos los elementos (como la web de ZeroNet)</li>
+                <li><strong>Fondo suave</strong>: gradiente de mint (#EAF5EE) a blanco, no plano</li>
+                <li><strong>Líneas de convergencia orgánicas</strong>: curvas suaves y fluidas, NO angulares ni
+                    agresivas</li>
+                <li><strong>Punto de convergencia</strong>: glow sutil en lime green, no un destello duro</li>
+                <li><strong>Mucho aire/white space</strong>: no saturar el rollup con elementos</li>
+                <li><strong>Sin fotos de stock</strong>: solo gráficos vectoriales y tipografía</li>
+                <li><strong>Eco-tech premium</strong>: debe transmitir sostenibilidad + tecnología + confianza
+                    corporativa</li>
+            </ul>
+        </div>
+
+        <!-- 10. ASSETS NECESARIOS -->
+        <h2><span class="num">10</span> Assets a solicitar al cliente</h2>
+        <div class="card">
+            <table>
+                <tr>
+                    <th>Asset</th>
+                    <th>Formato</th>
+                    <th>Notas</th>
+                </tr>
+                <tr>
+                    <td>Logo ZeroNet</td>
+                    <td>SVG / AI</td>
+                    <td>Versión completa (icono + texto)</td>
+                </tr>
+                <tr>
+                    <td>Logo Telefónica</td>
+                    <td>SVG / AI</td>
+                    <td>Versión horizontal</td>
+                </tr>
+                <tr>
+                    <td>Logo Cisco</td>
+                    <td>SVG / AI</td>
+                    <td>Versión horizontal</td>
+                </tr>
+                <tr>
+                    <td>Logo Wayra / INCIBE Emprende</td>
+                    <td>SVG / AI</td>
+                    <td>Para el badge de endorsement</td>
+                </tr>
+                <tr>
+                    <td>URL para QR</td>
+                    <td>—</td>
+                    <td>URL de destino del QR code</td>
+                </tr>
+                <tr>
+                    <td>Brand Book ZeroNet</td>
+                    <td>PDF</td>
+                    <td>Si existe, para validar colores exactos</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- 11. ENTREGABLES -->
+        <h2><span class="num">11</span> Entregables esperados</h2>
+        <div class="card">
+            <ul>
+                <li>PDF de imprenta (85×200cm, CMYK, 150-300 DPI, sangrado 3mm)</li>
+                <li>Archivo editable (AI o PSD)</li>
+                <li>Preview JPG/PNG para aprobación antes de enviar a imprenta</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <script>
+        // Print button
+    </script>
+</body>
+
+</html>
