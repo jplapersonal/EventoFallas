@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guión del Speaker · Evento Fallas 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', -apple-system, sans-serif;
+            background: #f8faf9;
+            color: #1A2E33;
+            line-height: 1.6;
+        }
+
+        .header {
+            background: #1A2E33;
+            color: white;
+            padding: 48px 40px;
+            text-align: center;
+        }
+
+        .header .tag {
+            display: inline-block;
+            background: rgba(217, 250, 166, 0.12);
+            border: 1px solid rgba(217, 250, 166, 0.2);
+            color: #D9FAA6;
+            padding: 4px 18px;
+            border-radius: 100px;
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .header h1 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.4);
+            font-weight: 300;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 24px 80px;
+        }
+
+        .overview {
+            background: white;
+            border: 1px solid #e8ece9;
+            border-radius: 20px;
+            padding: 32px;
+            margin-bottom: 40px;
+        }
+
+        .overview h2 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: #1A2E33;
+        }
+
+        .timeline {
+            display: grid;
+            grid-template-columns: 60px 1fr;
+            gap: 4px 16px;
+        }
+
+        .time {
+            font-size: 14px;
+            font-weight: 600;
+            color: #8a9a94;
+            text-align: right;
+            padding-top: 2px;
+        }
+
+        .time-desc {
+            font-size: 15px;
+            color: #3a5a50;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #f0f2f1;
+        }
+
+        .time-desc:last-child {
+            border: none;
+        }
+
+        .section {
+            background: white;
+            border: 1px solid #e8ece9;
+            border-radius: 20px;
+            padding: 32px;
+            margin-bottom: 24px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #f0f2f1;
+        }
+
+        .section-num {
+            width: 36px;
+            height: 36px;
+            background: #D9FAA6;
+            color: #1A2E33;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .section-time {
+            font-size: 13px;
+            color: #8a9a94;
+            font-weight: 400;
+            margin-left: auto;
+        }
+
+        .script-block {
+            margin-bottom: 20px;
+        }
+
+        .script-label {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #8a9a94;
+            margin-bottom: 6px;
+        }
+
+        .script-text {
+            font-size: 15px;
+            color: #2a4a40;
+            font-weight: 300;
+            line-height: 1.8;
+        }
+
+        .script-text strong {
+            font-weight: 500;
+            color: #1A2E33;
+        }
+
+        .quote {
+            background: #EAF5EE;
+            border-left: 3px solid #D9FAA6;
+            padding: 16px 20px;
+            border-radius: 0 12px 12px 0;
+            margin: 12px 0;
+            font-style: italic;
+            color: #2a4a40;
+            font-size: 16px;
+        }
+
+        .tip {
+            background: rgba(217, 250, 166, 0.15);
+            border: 1px solid rgba(217, 250, 166, 0.3);
+            border-radius: 12px;
+            padding: 12px 16px;
+            margin-top: 12px;
+            font-size: 13px;
+            color: #4a6a58;
+        }
+
+        .tip::before {
+            content: '💡 ';
+        }
+
+        .warning {
+            background: #FFF5E5;
+            border: 1px solid #F0DDB0;
+            border-radius: 12px;
+            padding: 12px 16px;
+            margin-top: 12px;
+            font-size: 13px;
+            color: #8a6a20;
+        }
+
+        .warning::before {
+            content: '⚠️ ';
+        }
+
+        .data-point {
+            display: inline-block;
+            background: #1A2E33;
+            color: #D9FAA6;
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 500;
+            margin: 2px 0;
+        }
+
+        .audience-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 8px;
+        }
+
+        .audience-tag {
+            font-size: 11px;
+            padding: 3px 10px;
+            border-radius: 100px;
+            font-weight: 500;
+        }
+
+        .audience-tag.cliente {
+            background: #E8F0FE;
+            color: #1A56DB;
+        }
+
+        .audience-tag.telefonica {
+            background: #E0F5F0;
+            color: #0D7A6A;
+        }
+
+        .audience-tag.cisco {
+            background: #FFF5E5;
+            color: #8a6a20;
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+
+            .section,
+            .overview {
+                box-shadow: none;
+                break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        <div class="tag">Guión del speaker</div>
+        <h1>Evento Fallas 2026 — 16 marzo</h1>
+        <p>El activo energético · The Terminal Hub, Valencia · 30 min</p>
+    </div>
+
+    <div class="container">
+
+        <!-- OVERVIEW -->
+        <div class="overview">
+            <h2>⏱ Estructura del pitch</h2>
+            <div class="timeline">
+                <div class="time">0:00</div>
+                <div class="time-desc"><strong>Parte 1 — Intro ZeroNet</strong> (5 min)</div>
+                <div class="time">5:00</div>
+                <div class="time-desc"><strong>Parte 2 — El problema invisible</strong> (3 min)</div>
+                <div class="time">8:00</div>
+                <div class="time-desc"><strong>Parte 3 — VIDEO "El agente fantasma"</strong> (5 min) ▶ auto-play</div>
+                <div class="time">13:00</div>
+                <div class="time-desc"><strong>Parte 4 — Demo en vivo</strong> (12 min)</div>
+                <div class="time">25:00</div>
+                <div class="time-desc"><strong>Parte 5 — Cierre + CTA</strong> (5 min)</div>
+            </div>
+        </div>
+
+        <!-- PARTE 1 -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-num">1</div>
+                <div class="section-title">Intro ZeroNet</div>
+                <div class="section-time">5 min · 0:00–5:00</div>
+            </div>
+
+            <div class="script-block">
+                <div class="script-label">Apertura</div>
+                <div class="script-text">
+                    <div class="quote">Buenos días a todos. Soy [tu nombre], fundador de ZeroNet. Primero, quiero
+                        agradeceros que estéis aquí, en Valencia, en plenas Fallas, dedicándonos vuestro tiempo. Y
+                        quiero daros las gracias especialmente a Telefónica y a Cisco por hacer esto posible.</div>
+                </div>
+            </div>
+
+            <div class="script-block">
+                <div class="script-label">¿Qué es ZeroNet?</div>
+                <div class="script-text">
+                    ZeroNet es una plataforma de <strong>Green ITOps</strong>. En pocas palabras: <strong>medimos el
+                        consumo energético de toda vuestra infraestructura IT en tiempo real, sin necesidad de instalar
+                        sensores físicos</strong>. Nos conectamos directamente a la lógica de vuestros equipos de red —
+                    switches, routers, servidores — y os damos visibilidad completa de dónde se va la energía y, más
+                    importante, <strong>cómo reducirla</strong>.
+                </div>
+            </div>
+
+            <div class="script-block">
+                <div class="script-label">Credibilidad</div>
+                <div class="script-text">
+                    Ya trabajamos con <strong>2 de las 3 principales entidades financieras de España</strong>, cadenas
+                    de <strong>hoteles 5 estrellas y Gran Lujo</strong>, y <strong>centros comerciales de
+                        referencia</strong>. Todos ellos confían en ZeroNet para cumplir con sus objetivos ESG y, de
+                    paso, ahorrar significativamente en su factura energética.
+                </div>
+                <div class="tip">No nombrar clientes específicos. La exclusividad genera más interés.</div>
+            </div>
+
+            <div class="script-block">
+                <div class="script-label">Alianzas</div>
+                <div class="script-text">
+                    Todo esto lo hacemos con <strong>Cisco como partner tecnológico</strong> — integrados nativamente
+                    con Catalyst y Meraki — y <strong>Telefónica como nuestro canal al mercado</strong>. Además, estamos
+                    respaldados por <strong>INCIBE Emprende a través de Wayra</strong>.
+                </div>
+                <div class="tip">Mirar a las personas de Cisco y Telefónica cuando las nombres. Genera complicidad.
+                </div>
+            </div>
+
+            <div class="audience-tags">
+                <span class="audience-tag cliente">Clientes: escuchan credibilidad y resultados</span>
+                <span class="audience-tag telefonica">Telefónica: escuchan el canal y la oportunidad</span>
+                <span class="audience-tag cisco">Cisco: escuchan integración nativa</span>
+            </div>
+        </div>
+
+        <!-- PARTE 2 -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-num">2</div>
+                <div class="section-title">El problema invisible</div>
+                <div class="section-time">3 min · 5:00–8:00</div>
+            </div>
+
+            <div class="script-block">
+                <div class="script-label">Transición</div>
+                <div class="script-text">
+                    <div class="quote">Bien, ya os he contado qué hacemos con switches, routers y servidores. Pero hoy
+                        quiero hablaros de algo diferente. De algo que está pasando ahora mismo en vuestras empresas y
+                        que probablemente nadie está midiendo.</div>
+                </div>
+            </div>
+
+            <div class="script-block">
+                <div class="script-label">El gancho</div>
+                <div class="script-text">
+                    Levantad la mano los que <strong>uséis algún tipo de inteligencia artificial</strong> en vuestra
+                    empresa. Copilot, ChatGPT, algún chatbot de atención al cliente, automatizaciones...
+                    <br><br>
+                    <em>(esperar que levanten la mano — la mayoría lo hará)</em>
+                    <br><br>
+                    Perfecto. Ahora, levantad la mano los que sepáis <strong>cuánta energía consumen esos agentes de
+                        IA</strong>.
+                    <br><br>
+                    <em>(probablemente nadie)</em>
+                </div>
+            </div>
+
+            <div class="script-block">
+                <div class="script-label">El dato impactante</div>
+                <div class="script-text">
+                    Os doy un dato: <span class="data-point">1 consulta de ChatGPT consume 10x más energía que una
+                        búsqueda de Google</span>. Diez veces más. Y vuestros empleados hacen decenas o cientos al día.
+                    Multiplicad eso por todos los bots, copilotos y automatizaciones que tenéis corriendo… y el
+                    resultado es un <strong>agujero negro energético</strong> que nadie está monitorizando.
+                    <br><br>
+                    Es como tener <strong>empleados fantasma</strong> trabajando 24/7, 365 días al año, sin que nadie
+                    les pague la nómina energética.
+                </div>
+            </div>
+
+            <div class="script-block">
+                <div class="script-label">Transición al video</div>
+                <div class="script-text">
+                    <div class="quote">Para que lo veáis más claro, hemos preparado algo. Apagamos las luces un momento
+                        y os cuento una historia.</div>
+                    <em>→ Lanzar el video (pulsar Play en pitch_video.html)</em>
+                </div>
+                <div class="warning">Tener el video ya cargado y en pantalla de inicio antes de este momento.</div>
+            </div>
+        </div>
+
+        <!-- PARTE 3 -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-num">3</div>
+                <div class="section-title">VIDEO auto-play</div>
+                <div class="section-time">5 min · 8:00–13:00</div>
+            </div>
+
+            <div class="script-block">
+                <div class="script-label">Instrucciones</div>
+                <div class="script-text">
+                    <strong>No hablar durante el video.</strong> Dejar que la narrativa visual haga su trabajo. Las 7
+                    slides avanzan solas (~45 seg cada una). El video termina con la slide del logo ZeroNet + "El futuro
+                    es medible".
+                    <br><br>
+                    Cuando termine el video:
+                    <div class="quote">Bien. Esto es lo que estaba pasando en esa empresa ficticia. Ahora, os voy a
+                        enseñar cómo lo hacemos de verdad.</div>
+                    <em>→ Cambiar a la demo en vivo del producto</em>
+                </div>
+                <div class="tip">Si el proyector tarda en responder, puedes avanzar slides manualmente con click o barra
+                    espaciadora.</div>
+            </div>
+        </div>
+
+        <!-- PARTE 4 -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-num">4</div>
+                <div class="section-title">Demo en vivo</div>
+                <div class="section-time">12 min · 13:00–25:00</div>
+            </div>
+
+            <div class="script-block">
+                <div class="script-label">Notas para la demo</div>
+                <div class="script-text">
+                    <strong>Mostrar el producto real de ZeroNet</strong> — dashboard principal y la nueva funcionalidad
+                    de monitorización de IA.
+                    <br><br>
+                    Puntos clave a cubrir:
+                    <br>
+                    • <strong>Detección automática</strong> — cómo ZeroNet encuentra los agentes de IA<br>
+                    • <strong>Medición granular</strong> — kWh, euros, CO₂ por agente<br>
+                    • <strong>Alertas y umbrales</strong> — notificaciones cuando un agente supera el consumo
+                    esperado<br>
+                    • <strong>Reporting ESG</strong> — cómo esto se integra en los informes de sostenibilidad<br>
+                    • <strong>ROI inmediato</strong> — "desde el primer día sabéis cuánto os está costando vuestra IA"
+                </div>
+                <div class="tip">Si algún asistente pregunta en la demo, genial. La interacción demuestra interés real.
+                </div>
+            </div>
+
+            <div class="script-block">
+                <div class="script-label">Mensajes por sector</div>
+                <div class="script-text">
+                    Adaptar ejemplos a los sectores presentes:
+                    <br><br>
+                    <span class="audience-tag cliente">Alimentación (Uvesa, Ajinomoto)</span> → "En producción
+                    industrial, un chatbot de control de calidad puede estar costando más que el propio sensor que
+                    monitoriza"
+                    <br><br>
+                    <span class="audience-tag cliente">Medical (Vygon)</span> → "Los agentes de IA en sanidad tienen
+                    requisitos de compliance; nosotros añadimos la capa de sostenibilidad"
+                    <br><br>
+                    <span class="audience-tag cliente">Logística (Grupo Alonso)</span> → "En logística, donde ya
+                    optimizáis rutas y combustible, ¿no deberíais optimizar también el combustible digital?"
+                    <br><br>
+                    <span class="audience-tag cliente">Industria & Seguridad (Fermax, Feix)</span> → "Vuestros sistemas
+                    de videovigilancia con IA procesan miles de frames al día. ¿Sabéis cuánta energía consume ese
+                    agente?"
+                </div>
+            </div>
+        </div>
+
+        <!-- PARTE 5 -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-num">5</div>
+                <div class="section-title">Cierre + CTA</div>
+                <div class="section-time">5 min · 25:00–30:00</div>
+            </div>
+
+            <div class="script-block">
+                <div class="script-label">Cierre narrativo</div>
+                <div class="script-text">
+                    <div class="quote">Hoy, con esta jornada, hemos hablado del activo energético. De cómo convertir el
+                        consumo en seguridad y resiliencia operativa. Y eso es exactamente lo que hacemos en ZeroNet:
+                        convertimos la energía que consumís en un activo visible, medible y optimizable.</div>
+                </div>
+            </div>
+
+            <div class="script-block">
+                <div class="script-label">Visión completa</div>
+                <div class="script-text">
+                    Con ZeroNet, medimos <strong>todo</strong> vuestro consumo IT. <strong>Desde el switch hasta la
+                        inteligencia artificial</strong>. Una sola plataforma. Sin sensores. En minutos.
+                    <br><br>
+                    Y todo integrado con el ecosistema de <strong>Cisco</strong> y disponible a través de
+                    <strong>Telefónica</strong>.
+                </div>
+            </div>
+
+            <div class="script-block">
+                <div class="script-label">Call to action</div>
+                <div class="script-text">
+                    <div class="quote">Si queréis saber cuánto os cuesta realmente vuestra IA — o simplemente queréis
+                        ver qué está consumiendo vuestra infraestructura ahora mismo — hablamos durante la comida, en la
+                        paella, o me mandáis un mensaje. Estamos aquí para vosotros.</div>
+                    <br>
+                    <em>Agradecer a Telefónica, Cisco, The Terminal Hub. Invitar a la siguiente parte del evento.</em>
+                </div>
+                <div class="tip">Cerrar con una sonrisa y una referencia a las Fallas o a Valencia. Conecta
+                    emocionalmente con el público local.</div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

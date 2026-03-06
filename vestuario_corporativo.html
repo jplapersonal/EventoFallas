@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vestuario Corporativo · ZeroNet 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', -apple-system, sans-serif;
+            background: #0a1518;
+            color: #e0e0e0;
+            min-height: 100vh;
+        }
+
+        .header {
+            text-align: center;
+            padding: 56px 24px 12px;
+        }
+
+        .header .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(217, 250, 166, 0.07);
+            border: 1px solid rgba(217, 250, 166, 0.14);
+            border-radius: 100px;
+            padding: 6px 22px;
+            margin-bottom: 20px;
+            font-size: 12px;
+            color: #D9FAA6;
+            font-weight: 400;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .header h1 {
+            font-size: 34px;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .header h1 span {
+            color: #D9FAA6;
+        }
+
+        .header p {
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.35);
+            font-weight: 300;
+            max-width: 560px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .grid {
+            max-width: 1100px;
+            margin: 48px auto 0;
+            padding: 0 24px 20px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+        }
+
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 28px;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            cursor: pointer;
+            position: relative;
+            animation: fadeInUp 0.7s ease forwards;
+            opacity: 0;
+        }
+
+        .card:hover {
+            transform: translateY(-8px) scale(1.01);
+            border-color: rgba(217, 250, 166, 0.2);
+            box-shadow: 0 24px 72px rgba(0, 0, 0, 0.4), 0 0 60px rgba(217, 250, 166, 0.03);
+        }
+
+        .card:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .card:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .card:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        .card .label-row {
+            position: absolute;
+            top: 18px;
+            left: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 2;
+        }
+
+        .card .type-tag {
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            color: #D9FAA6;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(12px);
+            padding: 5px 14px;
+            border-radius: 100px;
+            border: 1px solid rgba(217, 250, 166, 0.1);
+        }
+
+        .card .use-tag {
+            font-size: 10px;
+            font-weight: 400;
+            letter-spacing: 0.8px;
+            color: rgba(255, 255, 255, 0.5);
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(12px);
+            padding: 4px 12px;
+            border-radius: 100px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .card .img-area {
+            padding: 32px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 380px;
+        }
+
+        .card .img-area img {
+            width: 88%;
+            max-width: 420px;
+            height: auto;
+            border-radius: 14px;
+            transition: transform 0.5s ease;
+            filter: drop-shadow(0 16px 40px rgba(0, 0, 0, 0.4));
+        }
+
+        .card:hover .img-area img {
+            transform: scale(1.05);
+        }
+
+        .card .meta {
+            padding: 4px 28px 24px;
+        }
+
+        .card .meta h3 {
+            font-size: 18px;
+            font-weight: 500;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+
+        .card .meta .desc {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.35);
+            font-weight: 300;
+            line-height: 1.5;
+        }
+
+        .card .meta .details {
+            display: flex;
+            gap: 12px;
+            margin-top: 10px;
+            flex-wrap: wrap;
+        }
+
+        .card .meta .detail-chip {
+            font-size: 11px;
+            padding: 3px 10px;
+            border-radius: 8px;
+            background: rgba(217, 250, 166, 0.06);
+            border: 1px solid rgba(217, 250, 166, 0.1);
+            color: #D9FAA6;
+            font-weight: 400;
+        }
+
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(6, 12, 14, 0.97);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            cursor: zoom-out;
+            backdrop-filter: blur(40px);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .overlay.visible {
+            display: flex;
+        }
+
+        .overlay img {
+            max-height: 92vh;
+            max-width: 92vw;
+            border-radius: 20px;
+            box-shadow: 0 0 140px rgba(217, 250, 166, 0.05);
+        }
+
+        .overlay .hint {
+            position: absolute;
+            top: 24px;
+            right: 32px;
+            color: rgba(255, 255, 255, 0.15);
+            font-size: 13px;
+            font-weight: 300;
+        }
+
+        /* Kit section */
+        .kit-section {
+            max-width: 1100px;
+            margin: 56px auto 0;
+            padding: 0 24px;
+        }
+
+        .kit-card {
+            background: linear-gradient(135deg, rgba(217, 250, 166, 0.04), rgba(30, 52, 56, 0.3));
+            border: 1px solid rgba(217, 250, 166, 0.1);
+            border-radius: 24px;
+            padding: 36px 40px;
+            animation: fadeInUp 0.7s ease forwards;
+            animation-delay: 0.5s;
+            opacity: 0;
+        }
+
+        .kit-card h2 {
+            font-size: 22px;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 6px;
+        }
+
+        .kit-card h2 span {
+            color: #D9FAA6;
+        }
+
+        .kit-card .kit-subtitle {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.35);
+            font-weight: 300;
+            margin-bottom: 24px;
+        }
+
+        .kit-items {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+
+        @media (max-width: 768px) {
+            .kit-items {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .kit-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 16px;
+            padding: 20px 16px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .kit-item:hover {
+            border-color: rgba(217, 250, 166, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .kit-item .emoji {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .kit-item .name {
+            font-size: 14px;
+            font-weight: 500;
+            color: #fff;
+            margin-bottom: 2px;
+        }
+
+        .kit-item .use {
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.3);
+            font-weight: 300;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 48px 24px 64px;
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+            margin-top: 48px;
+        }
+
+        .footer p {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.15);
+            font-weight: 300;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(24px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        <div class="badge">👔 Vestuario Corporativo</div>
+        <h1>Kit <span>ZeroNet</span> Team</h1>
+        <p>Propuestas de vestuario corporativo interno para el equipo. Todos los diseños alineados con la identidad de
+            marca ZeroNet: colores oscuros + acento lime.</p>
+    </div>
+
+    <div class="grid">
+        <!-- Polo -->
+        <div class="card" onclick="openFull(this.querySelector('img').src)">
+            <div class="label-row">
+                <span class="type-tag">Polo</span>
+                <span class="use-tag">Reuniones · Partners</span>
+            </div>
+            <div class="img-area">
+                <img src="corp_polo.png" alt="Polo corporativo">
+            </div>
+            <div class="meta">
+                <h3>Polo Técnico Navy</h3>
+                <div class="desc">Algodón piqué premium. Logo ⟳ bordado en lime en pecho izquierdo. Ideal para reuniones
+                    con clientes y visitas a partners.</div>
+                <div class="details">
+                    <span class="detail-chip">Bordado</span>
+                    <span class="detail-chip">Navy #1B2A4A</span>
+                    <span class="detail-chip">Logo lime</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Softshell -->
+        <div class="card" onclick="openFull(this.querySelector('img').src)">
+            <div class="label-row">
+                <span class="type-tag">Softshell</span>
+                <span class="use-tag">Ferias · Viajes</span>
+            </div>
+            <div class="img-area">
+                <img src="corp_softshell.png" alt="Softshell corporativa">
+            </div>
+            <div class="meta">
+                <h3>Softshell Navy + Lime</h3>
+                <div class="desc">Chaqueta técnica con cremallera lime como acento de marca. Logo + "zeronet" bordados
+                    en pecho. Para ferias, viajes y días frescos.</div>
+                <div class="details">
+                    <span class="detail-chip">Bordado</span>
+                    <span class="detail-chip">Cremallera lime</span>
+                    <span class="detail-chip">Cortavientos</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hoodie -->
+        <div class="card" onclick="openFull(this.querySelector('img').src)">
+            <div class="label-row">
+                <span class="type-tag">Hoodie</span>
+                <span class="use-tag">Oficina · Casual</span>
+            </div>
+            <div class="img-area">
+                <img src="corp_hoodie.png" alt="Hoodie corporativa">
+            </div>
+            <div class="meta">
+                <h3>Hoodie Dark Teal</h3>
+                <div class="desc">Algodón heavyweight premium en el teal oscuro de marca (#1E3438). Logo + "zeronet"
+                    bordados en lime. Cordones en lime como detalle.</div>
+                <div class="details">
+                    <span class="detail-chip">Bordado</span>
+                    <span class="detail-chip">Teal #1E3438</span>
+                    <span class="detail-chip">Heavyweight</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Vest -->
+        <div class="card" onclick="openFull(this.querySelector('img').src)">
+            <div class="label-row">
+                <span class="type-tag">Chaleco</span>
+                <span class="use-tag">Eventos · Demos</span>
+            </div>
+            <div class="img-area">
+                <img src="corp_vest.png" alt="Chaleco corporativo">
+            </div>
+            <div class="meta">
+                <h3>Chaleco Acolchado Navy</h3>
+                <div class="desc">Acolchado ligero estilo Patagonia. Forro interior en lime visible al desabrocharlo.
+                    Logo + "zeronet" bordados. Sobre camisa queda muy profesional.</div>
+                <div class="details">
+                    <span class="detail-chip">Bordado</span>
+                    <span class="detail-chip">Forro lime</span>
+                    <span class="detail-chip">Quilted</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Kit recomendado -->
+    <div class="kit-section">
+        <div class="kit-card">
+            <h2>Pack recomendado · <span>Kit ZeroNet</span></h2>
+            <div class="kit-subtitle">Para cada miembro del equipo</div>
+            <div class="kit-items">
+                <div class="kit-item">
+                    <div class="emoji">👕</div>
+                    <div class="name">Polo Navy</div>
+                    <div class="use">Reuniones y partners</div>
+                </div>
+                <div class="kit-item">
+                    <div class="emoji">🧥</div>
+                    <div class="name">Softshell</div>
+                    <div class="use">Ferias y viajes</div>
+                </div>
+                <div class="kit-item">
+                    <div class="emoji">👕</div>
+                    <div class="name">Camiseta</div>
+                    <div class="use">Eventos informales</div>
+                </div>
+                <div class="kit-item">
+                    <div class="emoji">🧶</div>
+                    <div class="name">Hoodie</div>
+                    <div class="use">Oficina y remoto</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>ZeroNet · Vestuario Corporativo 2026 · Todas las prendas con bordado premium</p>
+    </div>
+
+    <div class="overlay" id="overlay" onclick="closeFull()">
+        <span class="hint">Click para cerrar · ESC</span>
+        <img id="overlay-img" src="" alt="">
+    </div>
+
+    <script>
+        function openFull(src) {
+            document.getElementById('overlay-img').src = src;
+            document.getElementById('overlay').classList.add('visible');
+        }
+        function closeFull() {
+            document.getElementById('overlay').classList.remove('visible');
+        }
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeFull(); });
+    </script>
+</body>
+
+</html>

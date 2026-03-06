@@ -314,28 +314,36 @@
     </div>
 
     <div class="tabs">
-        <button class="tab active" onclick="showView('compare')">Comparar</button>
+        <button class="tab active" onclick="showView('hybrid')">Hybrid ⭐</button>
+        <button class="tab" onclick="showView('compare')">Comparar</button>
         <button class="tab" onclick="showView('light')">Light Version</button>
         <button class="tab" onclick="showView('dark')">Dark Version</button>
     </div>
 
     <div class="view-container">
+        <!-- Hybrid recommended -->
+        <div id="view-hybrid" class="single-view">
+            <div class="label">Versión Híbrida ⭐ Recomendada</div>
+            <div class="sublabel">Top light (mint/blanco) + footer con distribución de logos del dark</div>
+            <div class="rollup-frame" onclick="openFullscreen(this.querySelector('img').src)">
+                <img src="rollup_v3_hybrid.png" alt="Rollup Hybrid">
+            </div>
+        </div>
+
         <!-- Side by side -->
-        <div id="view-compare" class="side-by-side">
+        <div id="view-compare" class="side-by-side" style="display:none;">
             <div class="rollup-card">
                 <div class="label">Light</div>
                 <div class="sublabel">Fondo mint/blanco · Fiel a la web de ZeroNet</div>
                 <div class="rollup-frame" onclick="openFullscreen(this.querySelector('img').src)">
-                    <img src="/Users/jose/.gemini/antigravity/brain/11999621-c91c-4772-a413-840bac22ea2a/rollup_zn_light_1772641558048.png"
-                        alt="Rollup Light">
+                    <img src="rollup_v2_light.png" alt="Rollup Light">
                 </div>
             </div>
             <div class="rollup-card">
                 <div class="label">Dark</div>
                 <div class="sublabel">Fondo dark petrol · Versión evento premium</div>
                 <div class="rollup-frame" onclick="openFullscreen(this.querySelector('img').src)">
-                    <img src="/Users/jose/.gemini/antigravity/brain/11999621-c91c-4772-a413-840bac22ea2a/rollup_zn_dark_1772641573270.png"
-                        alt="Rollup Dark">
+                    <img src="rollup_v2_dark.png" alt="Rollup Dark">
                 </div>
             </div>
         </div>
@@ -345,8 +353,7 @@
             <div class="label">Light Version</div>
             <div class="sublabel">Fondo mint/blanco · Estética fiel a zeronetit.com</div>
             <div class="rollup-frame" onclick="openFullscreen(this.querySelector('img').src)">
-                <img src="/Users/jose/.gemini/antigravity/brain/11999621-c91c-4772-a413-840bac22ea2a/rollup_zn_light_1772641558048.png"
-                    alt="Rollup Light">
+                <img src="rollup_v2_light.png" alt="Rollup Light">
             </div>
         </div>
 
@@ -355,8 +362,7 @@
             <div class="label">Dark Version</div>
             <div class="sublabel">Fondo dark petrol · Versión premium para evento</div>
             <div class="rollup-frame" onclick="openFullscreen(this.querySelector('img').src)">
-                <img src="/Users/jose/.gemini/antigravity/brain/11999621-c91c-4772-a413-840bac22ea2a/rollup_zn_dark_1772641573270.png"
-                    alt="Rollup Dark">
+                <img src="rollup_v2_dark.png" alt="Rollup Dark">
             </div>
         </div>
 
@@ -404,19 +410,23 @@
     <script>
         function showView(view) {
             document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.getElementById('view-hybrid').style.display = 'none';
             document.getElementById('view-compare').style.display = 'none';
             document.getElementById('view-light').style.display = 'none';
             document.getElementById('view-dark').style.display = 'none';
 
-            if (view === 'compare') {
-                document.getElementById('view-compare').style.display = 'grid';
+            if (view === 'hybrid') {
+                document.getElementById('view-hybrid').style.display = 'block';
                 document.querySelectorAll('.tab')[0].classList.add('active');
+            } else if (view === 'compare') {
+                document.getElementById('view-compare').style.display = 'grid';
+                document.querySelectorAll('.tab')[1].classList.add('active');
             } else if (view === 'light') {
                 document.getElementById('view-light').style.display = 'block';
-                document.querySelectorAll('.tab')[1].classList.add('active');
+                document.querySelectorAll('.tab')[2].classList.add('active');
             } else if (view === 'dark') {
                 document.getElementById('view-dark').style.display = 'block';
-                document.querySelectorAll('.tab')[2].classList.add('active');
+                document.querySelectorAll('.tab')[3].classList.add('active');
             }
         }
 

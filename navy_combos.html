@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Especificaciones · Color Logo Manga · Camiseta Navy</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        @page {
+            size: A4;
+            margin: 20mm;
+        }
+
+        @media print {
+            body {
+                background: white !important;
+            }
+
+            .no-print {
+                display: none !important;
+            }
+
+            .page-break {
+                page-break-before: always;
+            }
+
+            .card {
+                box-shadow: none !important;
+                border: 1px solid #e0e0e0 !important;
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', -apple-system, sans-serif;
+            background: #f4f6f5;
+            color: #1A2E33;
+            line-height: 1.6;
+        }
+
+        .no-print {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: #1B2A4A;
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 100;
+        }
+
+        .no-print span {
+            color: #7CB9E8;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .no-print button {
+            background: #7CB9E8;
+            color: #1B2A4A;
+            border: none;
+            padding: 8px 24px;
+            border-radius: 100px;
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .no-print button:hover {
+            background: #9DCBF0;
+        }
+
+        .content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 80px 24px 60px;
+        }
+
+        /* Header */
+        .doc-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 32px;
+            border-bottom: 2px solid #1B2A4A;
+        }
+
+        .doc-header .tag {
+            display: inline-block;
+            background: #D9FAA6;
+            color: #1A2E33;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            padding: 4px 16px;
+            border-radius: 100px;
+            margin-bottom: 16px;
+        }
+
+        .doc-header h1 {
+            font-size: 26px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 4px;
+        }
+
+        .doc-header .subtitle {
+            font-size: 16px;
+            color: #5a7068;
+            font-weight: 300;
+        }
+
+        .doc-header .date {
+            font-size: 13px;
+            color: #8a9a94;
+            margin-top: 8px;
+        }
+
+        /* Sections */
+        h2 {
+            font-size: 18px;
+            font-weight: 600;
+            margin: 36px 0 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #dde5e2;
+            color: #1A2E33;
+        }
+
+        h2 .num {
+            display: inline-block;
+            background: #1B2A4A;
+            color: #7CB9E8;
+            width: 28px;
+            height: 28px;
+            border-radius: 8px;
+            text-align: center;
+            line-height: 28px;
+            font-size: 14px;
+            margin-right: 8px;
+        }
+
+        h3 {
+            font-size: 15px;
+            font-weight: 600;
+            margin: 20px 0 8px;
+            color: #2a4a50;
+        }
+
+        p,
+        li {
+            font-size: 14px;
+            color: #3a5a50;
+            font-weight: 300;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin: 8px 0;
+        }
+
+        li {
+            margin: 4px 0;
+        }
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 24px;
+            margin: 16px 0;
+            box-shadow: 0 2px 12px rgba(26, 46, 51, 0.06);
+        }
+
+        /* Reference images */
+        .ref-row {
+            display: flex;
+            gap: 24px;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .ref-row .ref-img-box {
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+        }
+
+        .ref-row .ref-img-box img {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 12px;
+            box-shadow: 0 6px 24px rgba(26, 46, 51, 0.12);
+        }
+
+        .ref-row .ref-img-box .caption {
+            font-size: 11px;
+            color: #8a9a94;
+            margin-top: 8px;
+            font-style: italic;
+        }
+
+        .ref-row .ref-info {
+            flex: 1;
+            min-width: 280px;
+        }
+
+        /* Callout arrows */
+        .callout {
+            background: #FFF9E0;
+            border: 1px solid #F0E0A0;
+            border-radius: 12px;
+            padding: 14px 18px;
+            margin: 12px 0;
+            font-size: 13px;
+            color: #6a5a20;
+        }
+
+        .callout strong {
+            color: #4a3a10;
+        }
+
+        .callout-blue {
+            background: #EEF4FC;
+            border: 1px solid #C8DCEF;
+            color: #2a4a6a;
+        }
+
+        .callout-blue strong {
+            color: #1B2A4A;
+        }
+
+        .callout-green {
+            background: #EDFBE8;
+            border: 1px solid #C8E8C0;
+            color: #2a5a30;
+        }
+
+        .callout-green strong {
+            color: #1A3A1E;
+        }
+
+        /* Color options table */
+        .color-options {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0;
+        }
+
+        .color-options th {
+            text-align: left;
+            background: #EEF4FC;
+            padding: 10px 16px;
+            font-size: 13px;
+            font-weight: 500;
+            color: #1B2A4A;
+            border-bottom: 2px solid #C8DCEF;
+        }
+
+        .color-options td {
+            padding: 14px 16px;
+            border-bottom: 1px solid #eef2f0;
+            font-size: 14px;
+            color: #3a5a50;
+            font-weight: 300;
+            vertical-align: middle;
+        }
+
+        .color-options tr:hover {
+            background: #fafcfb;
+        }
+
+        .color-options .swatch {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            border: 2px solid rgba(0, 0, 0, 0.06);
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .color-options .on-navy {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: #1B2A4A;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            vertical-align: middle;
+        }
+
+        .color-options .on-navy .dot {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+        }
+
+        .color-options .hex {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            background: #f4f6f5;
+            padding: 2px 8px;
+            border-radius: 6px;
+            color: #1A2E33;
+            font-weight: 500;
+        }
+
+        .color-options .name {
+            font-weight: 500;
+            color: #1A2E33;
+        }
+
+        .color-options .note-cell {
+            font-size: 12px;
+            color: #6a8a7e;
+        }
+
+        /* Specs table */
+        table.specs {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+            margin: 8px 0;
+        }
+
+        table.specs td {
+            padding: 10px 16px;
+            border-bottom: 1px solid #eef2f0;
+            color: #3a5a50;
+            font-weight: 300;
+        }
+
+        table.specs td:first-child {
+            font-weight: 500;
+            color: #1A2E33;
+            width: 180px;
+        }
+
+        /* Zone diagram */
+        .tshirt-zones {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .zone-diagram {
+            width: 200px;
+            border: 2px solid #dde5e2;
+            border-radius: 12px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .zone {
+            padding: 10px 12px;
+            text-align: center;
+            font-size: 11px;
+            font-weight: 500;
+        }
+
+        .zone-chest {
+            background: #1B2A4A;
+            color: #D9FAA6;
+            padding: 24px 12px;
+        }
+
+        .zone-sleeve {
+            background: #D9FAA6;
+            color: #1A2E33;
+            padding: 18px 12px;
+            border-top: 2px dashed #fff;
+        }
+
+        .footer-doc {
+            text-align: center;
+            padding: 48px 24px;
+            border-top: 1px solid #dde5e2;
+            margin-top: 40px;
+        }
+
+        .footer-doc p {
+            font-size: 12px;
+            color: #8a9a94;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="no-print">
+        <span>📋 Especificaciones · Color logo manga</span>
+        <button onclick="window.print()">⬇ Guardar como PDF</button>
+    </div>
+
+    <div class="content">
+
+        <!-- HEADER -->
+        <div class="doc-header">
+            <div class="tag">Especificaciones de color</div>
+            <h1>Camiseta Navy — Color Logo en Manga</h1>
+            <div class="subtitle">ZeroNet · Evento Fallas 2026 · Valencia</div>
+            <div class="date">5 de marzo de 2026</div>
+        </div>
+
+        <!-- 1. QUÉ CAMBIAR -->
+        <h2><span class="num">1</span> Objetivo</h2>
+        <div class="card">
+            <p>Generar variaciones de color <strong>únicamente para el logo ⟳ y texto "zeronet" en la manga
+                    izquierda</strong> de la camiseta navy blue. El diseño artístico del pecho (líneas de convergencia
+                tricolor) <strong>NO se toca</strong>.</p>
+
+            <div class="callout" style="margin-top: 16px;">
+                <strong>⚠️ Muy importante:</strong> Solo cambiar el color del icono circular ⟳ de ZeroNet y el texto
+                "zeronet" que van en la manga. El dibujo del pecho se queda exactamente como está.
+            </div>
+        </div>
+
+        <!-- 2. REFERENCIA VISUAL -->
+        <h2><span class="num">2</span> Imagen de referencia</h2>
+        <div class="card">
+            <div class="ref-row">
+                <div class="ref-img-box">
+                    <img src="tshirt_final_navy.png" alt="Camiseta navy - referencia">
+                    <div class="caption">Diseño actual aprobado · Esta es la base</div>
+                </div>
+                <div class="ref-info">
+                    <h3>Elementos de la camiseta</h3>
+                    <table class="specs">
+                        <tr>
+                            <td>Camiseta</td>
+                            <td>Azul marino / Navy Blue <span
+                                    style="font-family:monospace;font-size:12px;">#1B2A4A</span></td>
+                        </tr>
+                        <tr>
+                            <td>Pecho (✅ NO tocar)</td>
+                            <td>3 líneas curvas convergentes: azul + teal + lime</td>
+                        </tr>
+                        <tr>
+                            <td>Manga izquierda</td>
+                            <td>Icono ⟳ ZeroNet + texto "zeronet"</td>
+                        </tr>
+                    </table>
+
+                    <div class="callout-blue" style="margin-top: 12px;">
+                        <strong>🎯 Zona a modificar:</strong> Solo el icono y texto de la manga. Actualmente están en
+                        blanco (#FFFFFF). Queremos ver cómo quedan en otros colores de la guía de marca ZeroNet.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. ZONAS -->
+        <h2><span class="num">3</span> Zonas de la camiseta</h2>
+        <div class="card">
+            <div class="tshirt-zones">
+                <div class="zone-diagram">
+                    <div class="zone zone-chest">
+                        PECHO<br>
+                        Líneas convergencia tricolor<br><br>
+                        <small style="opacity:0.7;">🔒 NO MODIFICAR</small>
+                    </div>
+                    <div class="zone zone-sleeve">
+                        MANGA IZQUIERDA<br>
+                        ⟳ Logo + "zeronet"<br><br>
+                        <small>✏️ CAMBIAR COLOR</small>
+                    </div>
+                </div>
+                <div style="flex:1; min-width: 280px;">
+                    <h3>Detalle de las zonas</h3>
+                    <ul>
+                        <li><strong>Pecho</strong>: Diseño artístico con 3 líneas curvas convergentes. Colores: Azul
+                            (#3B82F6), Teal (#2A5A4A), Lime (#D9FAA6). <strong>Este diseño está cerrado y
+                                aprobado.</strong></li>
+                        <li><strong>Manga izquierda</strong>: Logo circular de ZeroNet (icono ⟳) junto al texto
+                            "zeronet" en tipografía de marca. <strong>Este es el elemento que cambiará de color según
+                                las opciones de abajo.</strong></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. OPCIONES DE COLOR -->
+        <h2><span class="num">4</span> Opciones de color para la manga</h2>
+        <div class="card">
+            <p style="margin-bottom: 12px;">Todas las opciones son colores coherentes con la guía de marca ZeroNet y que
+                funcionan bien sobre azul marino.</p>
+
+            <table class="color-options">
+                <thead>
+                    <tr>
+                        <th style="width:40px;">#</th>
+                        <th>Color</th>
+                        <th>Código</th>
+                        <th>Vista sobre navy</th>
+                        <th>Notas</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>1</strong></td>
+                        <td>
+                            <span class="name">⚪ Blanco</span><br>
+                            <div class="swatch" style="background:#FFFFFF;"></div>
+                        </td>
+                        <td><span class="hex">#FFFFFF</span></td>
+                        <td>
+                            <div class="on-navy">
+                                <div class="dot" style="background:#FFFFFF;"></div>
+                            </div>
+                        </td>
+                        <td class="note-cell">Máximo contraste · clásico · limpio</td>
+                    </tr>
+                    <tr>
+                        <td><strong>2</strong></td>
+                        <td>
+                            <span class="name">🟢 Lime Green</span><br>
+                            <div class="swatch" style="background:#D9FAA6;"></div>
+                        </td>
+                        <td><span class="hex">#D9FAA6</span></td>
+                        <td>
+                            <div class="on-navy">
+                                <div class="dot" style="background:#D9FAA6;"></div>
+                            </div>
+                        </td>
+                        <td class="note-cell">Color principal de marca ZeroNet · vibrante · conecta con las líneas del
+                            pecho</td>
+                    </tr>
+                    <tr>
+                        <td><strong>3</strong></td>
+                        <td>
+                            <span class="name">🌿 Mint / Teal Claro</span><br>
+                            <div class="swatch" style="background:#5EC6B0;"></div>
+                        </td>
+                        <td><span class="hex">#5EC6B0</span></td>
+                        <td>
+                            <div class="on-navy">
+                                <div class="dot" style="background:#5EC6B0;"></div>
+                            </div>
+                        </td>
+                        <td class="note-cell">Fresco y sutil · tono intermedio ZeroNet · elegante</td>
+                    </tr>
+                    <tr>
+                        <td><strong>4</strong></td>
+                        <td>
+                            <span class="name">🔵 Celeste</span><br>
+                            <div class="swatch" style="background:#7CB9E8;"></div>
+                        </td>
+                        <td><span class="hex">#7CB9E8</span></td>
+                        <td>
+                            <div class="on-navy">
+                                <div class="dot" style="background:#7CB9E8;"></div>
+                            </div>
+                        </td>
+                        <td class="note-cell">Tono sobre tono con la camiseta navy · sofisticado · discreto</td>
+                    </tr>
+                    <tr>
+                        <td><strong>5</strong></td>
+                        <td>
+                            <span class="name">⚪ Silver / Gris Claro</span><br>
+                            <div class="swatch" style="background:#C0C0C0;"></div>
+                        </td>
+                        <td><span class="hex">#C0C0C0</span></td>
+                        <td>
+                            <div class="on-navy">
+                                <div class="dot" style="background:#C0C0C0;"></div>
+                            </div>
+                        </td>
+                        <td class="note-cell">Elegante y discreto · profesional · premium</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 5. COLORES DE LA MARCA -->
+        <h2><span class="num">5</span> Referencia de marca ZeroNet</h2>
+        <div class="card">
+            <h3>Paleta principal</h3>
+            <div style="display: flex; gap: 12px; margin: 12px 0; flex-wrap: wrap;">
+                <div style="text-align:center;">
+                    <div style="width:80px;height:50px;border-radius:10px;background:#1e3438;"></div>
+                    <div style="font-size:11px;margin-top:4px;font-weight:500;">Dark Teal</div>
+                    <div style="font-size:10px;font-family:monospace;color:#8a9a94;">#1E3438</div>
+                </div>
+                <div style="text-align:center;">
+                    <div style="width:80px;height:50px;border-radius:10px;background:#D9FAA6;"></div>
+                    <div style="font-size:11px;margin-top:4px;font-weight:500;">Lime Green</div>
+                    <div style="font-size:10px;font-family:monospace;color:#8a9a94;">#D9FAA6</div>
+                </div>
+                <div style="text-align:center;">
+                    <div style="width:80px;height:50px;border-radius:10px;background:#EAF5EE;border:1px solid #ddd;">
+                    </div>
+                    <div style="font-size:11px;margin-top:4px;font-weight:500;">Mint Light</div>
+                    <div style="font-size:10px;font-family:monospace;color:#8a9a94;">#EAF5EE</div>
+                </div>
+                <div style="text-align:center;">
+                    <div style="width:80px;height:50px;border-radius:10px;background:#fff;border:1px solid #ddd;"></div>
+                    <div style="font-size:11px;margin-top:4px;font-weight:500;">White</div>
+                    <div style="font-size:10px;font-family:monospace;color:#8a9a94;">#FFFFFF</div>
+                </div>
+            </div>
+
+            <h3>Colores de las líneas de convergencia (pecho)</h3>
+            <div style="display: flex; gap: 12px; margin: 12px 0; flex-wrap: wrap;">
+                <div style="text-align:center;">
+                    <div style="width:80px;height:50px;border-radius:10px;background:#3B82F6;"></div>
+                    <div style="font-size:11px;margin-top:4px;font-weight:500;">Azul</div>
+                    <div style="font-size:10px;font-family:monospace;color:#8a9a94;">#3B82F6</div>
+                </div>
+                <div style="text-align:center;">
+                    <div style="width:80px;height:50px;border-radius:10px;background:#2A5A4A;"></div>
+                    <div style="font-size:11px;margin-top:4px;font-weight:500;">Teal</div>
+                    <div style="font-size:10px;font-family:monospace;color:#8a9a94;">#2A5A4A</div>
+                </div>
+                <div style="text-align:center;">
+                    <div style="width:80px;height:50px;border-radius:10px;background:#D9FAA6;"></div>
+                    <div style="font-size:11px;margin-top:4px;font-weight:500;">Lime</div>
+                    <div style="font-size:10px;font-family:monospace;color:#8a9a94;">#D9FAA6</div>
+                </div>
+            </div>
+
+            <div class="callout-green">
+                <strong>📎 Referencia web:</strong> zeronetit.com — la tipografía y el icono del logo se pueden extraer
+                del SVG adjunto <code>zeronet_logo.svg</code>
+            </div>
+        </div>
+
+        <!-- 6. INSTRUCCIONES PARA EL DISEÑADOR -->
+        <h2><span class="num">6</span> Instrucciones para el diseñador</h2>
+        <div class="card">
+            <ol style="padding-left: 20px;">
+                <li style="margin: 8px 0;"><strong>Tomar como base</strong> el diseño actual de la camiseta navy
+                    (<code>tshirt_final_navy.png</code>)</li>
+                <li style="margin: 8px 0;"><strong>NO modificar</strong> el dibujo del pecho (líneas de convergencia
+                    tricolor) — se queda tal cual</li>
+                <li style="margin: 8px 0;"><strong>Cambiar solo</strong> el color del icono ⟳ de ZeroNet y el texto
+                    "zeronet" de la manga izquierda</li>
+                <li style="margin: 8px 0;"><strong>Generar 5 versiones</strong> con los colores de la tabla anterior
+                    (#FFFFFF, #D9FAA6, #5EC6B0, #7CB9E8, #C0C0C0)</li>
+                <li style="margin: 8px 0;"><strong>Mantener el mismo estilo</strong> de aplicación del logo en todas las
+                    variantes (mismo tamaño, posición y tipografía)</li>
+            </ol>
+
+            <div class="callout" style="margin-top: 16px;">
+                <strong>💡 Resumen rápido:</strong> La misma camiseta, el mismo dibujito del pecho, 5 colores diferentes
+                solo para el logo y texto de la manga.
+            </div>
+        </div>
+
+        <!-- 7. ASSETS -->
+        <h2><span class="num">7</span> Assets incluidos</h2>
+        <div class="card">
+            <table class="specs">
+                <tr>
+                    <td>Logo vectorial</td>
+                    <td><code>zeronet_logo.svg</code> — icono + texto completo</td>
+                </tr>
+                <tr>
+                    <td>Imagen referencia</td>
+                    <td><code>tshirt_final_navy.png</code> — mockup base aprobado</td>
+                </tr>
+                <tr>
+                    <td>Referencia web</td>
+                    <td><code>ref_zeronet_web.png</code> — captura de zeronetit.com</td>
+                </tr>
+                <tr>
+                    <td>Logo header</td>
+                    <td><code>zeronet_logo_header.png</code> — logo en formato raster</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="footer-doc">
+            <p>ZeroNet · Especificaciones logo manga · Camiseta Navy Blue · Evento Fallas 2026 · Valencia</p>
+        </div>
+
+    </div>
+
+    <script>
+        // Nothing dynamic needed — this is a spec document
+    </script>
+
+</body>
+
+</html>

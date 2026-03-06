@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Propuestas Camiseta Corporativa — ZeroNet 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', -apple-system, sans-serif;
+            background: #0f1f23;
+            color: #e0e0e0;
+            min-height: 100vh;
+        }
+
+        /* ─── Header ─── */
+        .header {
+            text-align: center;
+            padding: 56px 24px 8px;
+        }
+
+        .header .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(217, 250, 166, 0.07);
+            border: 1px solid rgba(217, 250, 166, 0.14);
+            border-radius: 100px;
+            padding: 6px 22px;
+            margin-bottom: 20px;
+            font-size: 12px;
+            color: #D9FAA6;
+            font-weight: 400;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .header h1 {
+            font-size: 32px;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .header h1 span {
+            color: #D9FAA6;
+        }
+
+        .header p {
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.35);
+            font-weight: 300;
+            max-width: 520px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* ─── Brand Reference Bar ─── */
+        .brand-bar {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            padding: 28px 24px 16px;
+            flex-wrap: wrap;
+        }
+
+        .brand-bar .color-chip {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .brand-bar .chip {
+            width: 18px;
+            height: 18px;
+            border-radius: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .brand-bar .chip-label {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.35);
+            font-weight: 300;
+        }
+
+        .brand-bar .chip-hex {
+            font-family: monospace;
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* ─── Section dividers ─── */
+        .section-title {
+            text-align: center;
+            padding: 40px 24px 24px;
+        }
+
+        .section-title h2 {
+            font-size: 20px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 6px;
+        }
+
+        .section-title p {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.3);
+            font-weight: 300;
+        }
+
+        .section-title .divider {
+            width: 60px;
+            height: 2px;
+            background: rgba(217, 250, 166, 0.3);
+            margin: 16px auto 0;
+            border-radius: 2px;
+        }
+
+        /* ─── Grid ─── */
+        .grid {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 24px 20px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+        }
+
+        @media (max-width: 1024px) {
+            .grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* ─── Card ─── */
+        .card {
+            background: rgba(255, 255, 255, 0.025);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 24px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            cursor: pointer;
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(217, 250, 166, 0.2);
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, 0.3),
+                0 0 0 1px rgba(217, 250, 166, 0.08),
+                0 0 40px rgba(217, 250, 166, 0.04);
+        }
+
+        .card .proposal-num {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            background: rgba(217, 250, 166, 0.12);
+            border: 1px solid rgba(217, 250, 166, 0.2);
+            color: #D9FAA6;
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            padding: 4px 14px;
+            border-radius: 100px;
+            z-index: 2;
+            text-transform: uppercase;
+        }
+
+        .card .img-wrap {
+            position: relative;
+            padding: 32px 24px 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(180deg,
+                    rgba(217, 250, 166, 0.02) 0%,
+                    rgba(0, 0, 0, 0) 100%);
+            min-height: 300px;
+        }
+
+        .card .img-wrap img {
+            width: 85%;
+            max-width: 320px;
+            height: auto;
+            border-radius: 12px;
+            transition: transform 0.4s ease;
+            filter: drop-shadow(0 12px 32px rgba(0, 0, 0, 0.35));
+        }
+
+        .card:hover .img-wrap img {
+            transform: scale(1.04);
+        }
+
+        .card .info {
+            padding: 4px 24px 24px;
+        }
+
+        .card .info h3 {
+            font-size: 17px;
+            font-weight: 500;
+            color: #fff;
+            margin-bottom: 6px;
+            letter-spacing: -0.2px;
+        }
+
+        .card .info p {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.35);
+            font-weight: 300;
+            line-height: 1.5;
+        }
+
+        .card .tags {
+            display: flex;
+            gap: 6px;
+            padding: 0 24px 20px;
+            flex-wrap: wrap;
+        }
+
+        .card .tag {
+            font-size: 11px;
+            padding: 3px 12px;
+            border-radius: 100px;
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            color: rgba(255, 255, 255, 0.4);
+            font-weight: 300;
+        }
+
+        .card .tag.highlight {
+            border-color: rgba(217, 250, 166, 0.2);
+            color: #D9FAA6;
+            background: rgba(217, 250, 166, 0.06);
+        }
+
+        /* ─── Combo card (front+back) ─── */
+        .card.combo .img-wrap {
+            display: flex;
+            gap: 12px;
+            padding: 32px 16px 16px;
+        }
+
+        .card.combo .img-wrap img {
+            width: 46%;
+            max-width: 180px;
+        }
+
+        /* ─── Fullscreen Overlay ─── */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(8, 16, 18, 0.96);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            cursor: zoom-out;
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+        }
+
+        .overlay.visible {
+            display: flex;
+        }
+
+        .overlay img {
+            max-height: 90vh;
+            max-width: 90vw;
+            border-radius: 16px;
+            box-shadow: 0 0 120px rgba(217, 250, 166, 0.06);
+        }
+
+        .overlay .hint {
+            position: absolute;
+            top: 28px;
+            right: 36px;
+            color: rgba(255, 255, 255, 0.2);
+            font-size: 13px;
+            font-weight: 300;
+        }
+
+        .overlay .design-name {
+            position: absolute;
+            bottom: 36px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 15px;
+            font-weight: 400;
+            text-align: center;
+        }
+
+        .overlay .design-name span {
+            color: #D9FAA6;
+        }
+
+        /* ─── Footer ─── */
+        .footer {
+            text-align: center;
+            padding: 40px 24px 60px;
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+            margin-top: 20px;
+        }
+
+        .footer p {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.2);
+            font-weight: 300;
+        }
+
+        .footer .note {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(217, 250, 166, 0.05);
+            border: 1px solid rgba(217, 250, 166, 0.1);
+            border-radius: 12px;
+            padding: 12px 24px;
+            margin-top: 20px;
+            font-size: 13px;
+            color: rgba(217, 250, 166, 0.7);
+            font-weight: 300;
+        }
+
+        /* ─── Animations ─── */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card {
+            animation: fadeInUp 0.6s ease forwards;
+            opacity: 0;
+        }
+
+        .card:nth-child(1) {
+            animation-delay: 0.05s;
+        }
+
+        .card:nth-child(2) {
+            animation-delay: 0.12s;
+        }
+
+        .card:nth-child(3) {
+            animation-delay: 0.19s;
+        }
+
+        .card:nth-child(4) {
+            animation-delay: 0.26s;
+        }
+
+        .card:nth-child(5) {
+            animation-delay: 0.33s;
+        }
+
+        .card:nth-child(6) {
+            animation-delay: 0.40s;
+        }
+
+        .card:nth-child(7) {
+            animation-delay: 0.47s;
+        }
+
+        .card:nth-child(8) {
+            animation-delay: 0.54s;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        <div class="badge">✦ Propuestas de diseño · v2</div>
+        <h1>Camiseta Corporativa <span>ZeroNet</span></h1>
+        <p>8 propuestas de diseño con el logo real de ZeroNet. Haz clic en cualquiera para verlo a pantalla completa.
+        </p>
+    </div>
+
+    <div class="brand-bar">
+        <div class="color-chip">
+            <div class="chip" style="background: #D9FAA6;"></div>
+            <div>
+                <div class="chip-label">Lime Green</div>
+                <div class="chip-hex">#D9FAA6</div>
+            </div>
+        </div>
+        <div class="color-chip">
+            <div class="chip" style="background: #1A2E33;"></div>
+            <div>
+                <div class="chip-label">Dark Petrol</div>
+                <div class="chip-hex">#1A2E33</div>
+            </div>
+        </div>
+        <div class="color-chip">
+            <div class="chip" style="background: #EAF5EE;"></div>
+            <div>
+                <div class="chip-label">Mint</div>
+                <div class="chip-hex">#EAF5EE</div>
+            </div>
+        </div>
+        <div class="color-chip">
+            <div class="chip" style="background: #FFFFFF; border-color: rgba(255,255,255,0.15);"></div>
+            <div>
+                <div class="chip-label">White</div>
+                <div class="chip-hex">#FFFFFF</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══ DISEÑOS CON GRÁFICO ═══ -->
+    <div class="section-title">
+        <h2>Diseños con gráfico</h2>
+        <p>Propuestas más visuales y expresivas</p>
+        <div class="divider"></div>
+    </div>
+
+    <div class="grid">
+        <!-- 1: Classic Logo -->
+        <div class="card" onclick="openFull('img1', 'Propuesta 1 · Classic Logo')">
+            <div class="proposal-num">Propuesta 1</div>
+            <div class="img-wrap">
+                <img id="img1" src="tshirt_v2_classic.png" alt="Classic Logo">
+            </div>
+            <div class="info">
+                <h3>Classic Logo</h3>
+                <p>Dark Petrol con logo ZeroNet centrado en lime green. Diseño limpio y atemporal.</p>
+            </div>
+            <div class="tags">
+                <span class="tag highlight">Recomendada</span>
+                <span class="tag">Dark Petrol</span>
+                <span class="tag">Logo centrado</span>
+            </div>
+        </div>
+
+        <!-- 2: Convergencia -->
+        <div class="card" onclick="openFull('img2', 'Propuesta 2 · Convergencia')">
+            <div class="proposal-num">Propuesta 2</div>
+            <div class="img-wrap">
+                <img id="img2" src="tshirt_v2_convergence.png" alt="Convergencia">
+            </div>
+            <div class="info">
+                <h3>Convergencia</h3>
+                <p>Tres líneas orgánicas (azul, teal, lime) que convergen. Refleja el concepto del evento.</p>
+            </div>
+            <div class="tags">
+                <span class="tag highlight">Favorita</span>
+                <span class="tag">Dark Petrol</span>
+                <span class="tag">Artístico</span>
+            </div>
+        </div>
+
+        <!-- 3: Mint Edition -->
+        <div class="card" onclick="openFull('img3', 'Propuesta 3 · Mint Edition')">
+            <div class="proposal-num">Propuesta 3</div>
+            <div class="img-wrap">
+                <img id="img3" src="tshirt_v2_mint.png" alt="Mint Edition">
+            </div>
+            <div class="info">
+                <h3>Mint Edition</h3>
+                <p>Camiseta mint con logo en dark petrol y tagline «energy · security · connectivity».</p>
+            </div>
+            <div class="tags">
+                <span class="tag">Mint</span>
+                <span class="tag">Con tagline</span>
+                <span class="tag">Verano</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══ DISEÑOS MINIMALISTAS ═══ -->
+    <div class="section-title">
+        <h2>Diseños minimalistas</h2>
+        <p>Branding discreto, estilo premium — con detalle en mangas</p>
+        <div class="divider"></div>
+    </div>
+
+    <div class="grid">
+        <!-- 4: Pocket Minimal -->
+        <div class="card" onclick="openFull('img4', 'Propuesta 4 · Pocket Minimal')">
+            <div class="proposal-num">Propuesta 4</div>
+            <div class="img-wrap">
+                <img id="img4" src="tshirt_v2_pocket.png" alt="Pocket Minimal">
+            </div>
+            <div class="info">
+                <h3>Pocket Minimal</h3>
+                <p>Blanca con logo discreto en pecho izquierdo. Estilo luxury brand, ideal para oficina.</p>
+            </div>
+            <div class="tags">
+                <span class="tag highlight">Corporativo</span>
+                <span class="tag">Blanca</span>
+                <span class="tag">Minimal</span>
+            </div>
+        </div>
+
+        <!-- 5: Sleeve Dark -->
+        <div class="card" onclick="openFull('img5', 'Propuesta 5 · Sleeve Brand Dark')">
+            <div class="proposal-num">Propuesta 5</div>
+            <div class="img-wrap">
+                <img id="img5" src="tshirt_v2_sleeve_dark.png" alt="Sleeve Brand Dark">
+            </div>
+            <div class="info">
+                <h3>Sleeve Brand · Dark</h3>
+                <p>Dark Petrol con «zeronet» en la manga y solo el icono en el pecho. Ultra discreto.</p>
+            </div>
+            <div class="tags">
+                <span class="tag highlight">Manga</span>
+                <span class="tag">Dark Petrol</span>
+                <span class="tag">Ultra minimal</span>
+            </div>
+        </div>
+
+        <!-- 6: Sleeve White -->
+        <div class="card" onclick="openFull('img6', 'Propuesta 6 · Sleeve Brand White')">
+            <div class="proposal-num">Propuesta 6</div>
+            <div class="img-wrap">
+                <img id="img6" src="tshirt_v2_sleeve_white.png" alt="Sleeve Brand White">
+            </div>
+            <div class="info">
+                <h3>Sleeve Brand · White</h3>
+                <p>Blanca con «zeronet» en la manga y icono sutil en pecho. Look premium cotidiano.</p>
+            </div>
+            <div class="tags">
+                <span class="tag highlight">Manga</span>
+                <span class="tag">Blanca</span>
+                <span class="tag">Sutil</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══ EDICIÓN EVENTO ═══ -->
+    <div class="section-title">
+        <h2>Edición Evento Fallas 2026</h2>
+        <p>Diseños especiales para el evento en Valencia</p>
+        <div class="divider"></div>
+    </div>
+
+    <div class="grid">
+        <!-- 7: Stripe + Sleeve -->
+        <div class="card" onclick="openFull('img7', 'Propuesta 7 · Stripe + Sleeve')">
+            <div class="proposal-num">Propuesta 7</div>
+            <div class="img-wrap">
+                <img id="img7" src="tshirt_v2_simple_stripe.png" alt="Stripe Design">
+            </div>
+            <div class="info">
+                <h3>Línea Lime + Manga</h3>
+                <p>Dark Petrol con línea lime horizontal, logo debajo y «zeronetit.com» en manga derecha.</p>
+            </div>
+            <div class="tags">
+                <span class="tag highlight">Manga</span>
+                <span class="tag">Dark Petrol</span>
+                <span class="tag">Simple</span>
+            </div>
+        </div>
+
+        <!-- 8: Fallas Edition (front + back combo) -->
+        <div class="card combo" onclick="openFull('img8a', 'Propuesta 8 · Edición Fallas — Frontal')">
+            <div class="proposal-num">Propuesta 8</div>
+            <div class="img-wrap">
+                <img id="img8a" src="tshirt_v2_fallas_front.png" alt="Fallas Front">
+                <img id="img8b" src="tshirt_v2_fallas_back.png" alt="Fallas Back"
+                    onclick="event.stopPropagation(); openFull('img8b', 'Propuesta 8 · Edición Fallas — Trasera')">
+            </div>
+            <div class="info">
+                <h3>Edición Fallas 2026</h3>
+                <p>Edición limitada: frontal con llama convergente + trasera con claim e icono. Dark Petrol.</p>
+            </div>
+            <div class="tags">
+                <span class="tag highlight">Ed. Limitada</span>
+                <span class="tag">Frontal + Trasera</span>
+                <span class="tag">Evento</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>ZeroNet · Camiseta Corporativa · Marzo 2026</p>
+        <div class="note">
+            💡 Mockups conceptuales con el logo real de ZeroNet. Para producción, el diseñador usará el SVG vectorial.
+        </div>
+    </div>
+
+    <!-- Fullscreen Overlay -->
+    <div class="overlay" id="overlay" onclick="closeFull()">
+        <span class="hint">Click para cerrar · ESC</span>
+        <img id="overlay-img" src="" alt="">
+        <div class="design-name" id="overlay-name"></div>
+    </div>
+
+    <script>
+        function openFull(imgId, name) {
+            const src = document.getElementById(imgId).src;
+            document.getElementById('overlay-img').src = src;
+            document.getElementById('overlay-name').innerHTML = '<span>✦</span> ' + name;
+            document.getElementById('overlay').classList.add('visible');
+        }
+
+        function closeFull() {
+            document.getElementById('overlay').classList.remove('visible');
+        }
+
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape') closeFull();
+        });
+    </script>
+</body>
+
+</html>
